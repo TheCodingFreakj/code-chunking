@@ -6,7 +6,7 @@
     "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server  --mode none --port:8181",
-    "analyze": "source-map-explorer bundle.js"
+    "analyze": "source-map-explorer *.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +26,13 @@
     "webpack-dev-server": "^3.1.8"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheCodingFreakj/code-chunking.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheCodingFreakj/code-chunking/issues"
+  },
+  "homepage": "https://github.com/TheCodingFreakj/code-chunking#readme",
   "description": ""
 }

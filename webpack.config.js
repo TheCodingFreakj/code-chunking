@@ -7,13 +7,14 @@ module.exports = {
   entry: {
     index: "./src/index.js",
     App: "./src/App.js",
-    vendor: ["react", "react-dom"],
+    //vendor: ["react", "react-dom"],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[hash].bundle.js",
-    chunkFilename: "[name].bundle.js",
+    //chunkFilename: "[name].bundle.js",
   },
+  //devtool: "source-map",
   module: {
     rules: [
       {
@@ -36,7 +37,13 @@ module.exports = {
   optimization: {
     mergeDuplicateChunks: false,
     splitChunks: {
-      chunks: "all",
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[/\\]/,
+          name: "common",
+          chunks: "all",
+        },
+      },
     },
   },
   // devServer: {
@@ -46,15 +53,15 @@ module.exports = {
   //   hotOnly: true,
   // },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin({
+      multiStep: true,
+    }),
+
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "public/index.html",
     }),
 
-    new CleanWebpackPlugin({
-      protectWebpackAssets: true,
-      cleanAfterEveryBuildPatterns: ["build/*.*"],
-    }),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ["**/*"] }),
   ],
 };
